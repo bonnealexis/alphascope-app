@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f9f9f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d0d0d" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="AlphaScope">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AlphaScope</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icones/favicon-32.png">
+  <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-screen="">
+
+  <!-- Ouvert dans Safari : comment l'installer sur l'écran d'accueil. -->
+  <main id="ecran-installer" class="screen screen-intro" hidden>
+    <img class="intro-logo" src="icones/icone-192.png" alt="" width="72" height="72">
+    <h1>Installe AlphaScope sur ton iPhone</h1>
+    <p class="intro-lead">Trois gestes dans Safari, et l'appli a son icône sur ton écran d'accueil.</p>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-illustration" aria-hidden="true">
+          <svg viewBox="0 0 240 64" class="mock">
+            <rect x="1" y="1" width="238" height="62" rx="12" fill="#f1f0ec" stroke="#e6e4df"/>
+            <path d="M28 32h14M36 25l-7 7 7 7" fill="none" stroke="#b9b7b0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M74 32h14M80 25l7 7-7 7" fill="none" stroke="#b9b7b0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="120" cy="32" r="21" fill="#dbe8ff"/>
+            <path d="M113 29v12h14V29M120 20v15M115 25l5-5 5 5" fill="none" stroke="#1f6feb" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="158" y="22" width="18" height="18" rx="3" fill="none" stroke="#b9b7b0" stroke-width="2.2"/>
+            <rect x="198" y="21" width="16" height="20" rx="3" fill="none" stroke="#b9b7b0" stroke-width="2.2"/>
+          </svg>
+        </div>
+        <p><strong>1.</strong> Touche le bouton <strong>Partager</strong> en bas de Safari (le carré avec une flèche).</p>
+      </li>
+      <li class="step">
+        <div class="step-illustration" aria-hidden="true">
+          <svg viewBox="0 0 240 64" class="mock">
+            <rect x="1" y="1" width="238" height="62" rx="12" fill="#ffffff" stroke="#e6e4df"/>
+            <rect x="12" y="12" width="216" height="40" rx="9" fill="#dbe8ff"/>
+            <text x="26" y="37" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#0b0b0b">Sur l'écran d'accueil</text>
+            <rect x="196" y="22" width="20" height="20" rx="5" fill="none" stroke="#0b0b0b" stroke-width="2"/>
+            <path d="M206 27v10M201 32h10" stroke="#0b0b0b" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p><strong>2.</strong> Fais défiler et choisis <strong>Sur l'écran d'accueil</strong>.</p>
+      </li>
+      <li class="step">
+        <div class="step-illustration" aria-hidden="true">
+          <svg viewBox="0 0 240 64" class="mock">
+            <rect x="1" y="1" width="238" height="62" rx="12" fill="#ffffff" stroke="#e6e4df"/>
+            <text x="18" y="38" font-family="-apple-system, system-ui, sans-serif" font-size="15" fill="#1f6feb">Annuler</text>
+            <text x="80" y="38" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="600" fill="#0b0b0b">AlphaScope</text>
+            <rect x="168" y="16" width="62" height="32" rx="9" fill="#dbe8ff"/>
+            <text x="176" y="37" font-family="-apple-system, system-ui, sans-serif" font-size="14" font-weight="600" fill="#1f6feb">Ajouter</text>
+          </svg>
+        </div>
+        <p><strong>3.</strong> Touche <strong>Ajouter</strong>, puis ouvre AlphaScope depuis son icône.</p>
+      </li>
+    </ol>
+    <p class="intro-note">Les notifications ne marchent que dans l'appli ouverte depuis l'écran d'accueil (iOS 16.4 ou plus).</p>
+    <button type="button" class="link-button" id="continuer-navigateur">Continuer dans le navigateur</button>
+  </main>
+
+  <!-- Installée, sans clé : la créer sur GitHub et la coller. -->
+  <main id="ecran-cle" class="screen screen-intro" hidden>
+    <img class="intro-logo" src="icones/icone-192.png" alt="" width="72" height="72">
+    <h1>Ta clé</h1>
+    <p class="intro-lead">Une clé GitHub permet à l'appli de lire tes chiffres et d'envoyer tes saisies. Elle reste sur cet iPhone.</p>
+    <ol class="key-steps">
+      <li><a class="button button-secondary" data-token-page target="_blank" rel="noopener">Ouvrir la page de création de clé</a></li>
+      <li><strong>Token name</strong> : AlphaScope iPhone · <strong>Expiration</strong> : la plus longue proposée (un an).</li>
+      <li><strong>Repository access</strong> : Only select repositories → <strong>AlphaScope</strong>.</li>
+      <li><strong>Permissions</strong> → Repository permissions → <strong>Contents</strong> : Read and write.</li>
+      <li><strong>Generate token</strong>, puis copie la clé (elle commence par <code>github_pat_</code>).</li>
+    </ol>
+    <form id="cle-formulaire" class="form key-form" novalidate>
+      <label for="cle-champ">Colle ta clé ici</label>
+      <input id="cle-champ" name="cle" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="github_pat_…">
+      <p id="cle-erreur" class="form-error" role="alert" hidden></p>
+      <button id="cle-bouton" type="submit" class="button button-primary button-block">Vérifier ma clé</button>
+    </form>
+    <div id="cle-lecture-seule" class="banner banner-warn" hidden>
+      <p>Ta clé peut lire tes chiffres, mais pas envoyer tes saisies. Pour tout faire depuis l'appli, mets « Contents » sur « Read and write » et recolle la clé.</p>
+      <button type="button" class="button button-secondary button-block" id="cle-continuer">Continuer en lecture seule</button>
+    </div>
+  </main>
+
+  <!-- L'appli. -->
+  <div id="ecran-principal" class="screen-main" hidden>
+    <header class="topbar" id="barre">
+      <span id="petit-titre" class="topbar-small-title" aria-hidden="true">Aujourd'hui</span>
+      <div class="topbar-actions">
+        <button type="button" id="rafraichir" class="icon-button" aria-label="Actualiser">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button type="button" id="reglages" class="icon-button" aria-label="Réglages">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.3 2.9h3.4l.5 2.4c.6.2 1.2.6 1.7 1l2.3-.8 1.7 2.9-1.8 1.6c.1.7.1 1.3 0 2l1.8 1.6-1.7 2.9-2.3-.8c-.5.4-1.1.8-1.7 1l-.5 2.4h-3.4l-.5-2.4c-.6-.2-1.2-.6-1.7-1l-2.3.8-1.7-2.9 1.8-1.6c-.1-.7-.1-1.3 0-2L4.1 8.4l1.7-2.9 2.3.8c.5-.4 1.1-.8 1.7-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        </button>
+      </div>
+    </header>
+    <div id="tirer" class="ptr" aria-hidden="true">
+      <svg viewBox="0 0 36 36" class="ptr-ring"><circle cx="18" cy="18" r="13" class="ptr-track"/><circle cx="18" cy="18" r="13" class="ptr-arc" pathLength="100"/></svg>
+    </div>
+    <main id="contenu" class="content">
+      <div class="large-title">
+        <h1 id="grand-titre">Aujourd'hui</h1>
+        <p id="statut" class="large-subtitle" aria-live="polite"></p>
+      </div>
+      <div id="corps"></div>
+    </main>
+    <nav id="onglets" class="tabbar" aria-label="Onglets">
+      <button type="button" class="tab" data-tab="aujourdhui">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Aujourd'hui</span>
+      </button>
+      <button type="button" class="tab" data-tab="idees">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span>Idées</span>
+      </button>
+      <button type="button" class="tab" data-tab="suivi">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-5 4 4 8-8M15 8h5v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Suivi</span>
+      </button>
+      <button type="button" class="tab" data-tab="portefeuille">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 6V4.5A1.5 1.5 0 0 1 9.5 3h5A1.5 1.5 0 0 1 16 4.5V6M3 12h18" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Portefeuille</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="sheet-root"></div>
+  <div id="erreur-appli" class="app-error" role="alert" hidden></div>
+  <script src="js/erreurs.js"></script>
+  <noscript><p class="noscript">AlphaScope a besoin de JavaScript.</p></noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
